@@ -1,0 +1,15 @@
+import { Object3D } from 'three';
+import { Obj3D } from 'illutions';
+
+import { Ring } from './ring';
+
+export class Aim extends Obj3D {
+  // Called once when this object is encountered while traversing the GLTF model
+  public override onTraverse(objGltf: Object3D): void {
+    super.onTraverse(objGltf);
+
+    // Add a visual ring sprite at the marker aim
+    const ring = new Ring(objGltf);
+    this.scene.add(ring);
+  }
+}

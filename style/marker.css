@@ -1,0 +1,47 @@
+.marker {
+  z-index: 2;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 30px));
+  transition: opacity 750ms ease, visibility 0s linear 750ms;
+}
+
+.marker::after {
+  content: '';
+  position: absolute;
+  top: calc(100%);
+  left: 50%;
+  width: 2px;
+  height: 21px;
+  background: #b8b3b388;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.marker[data-visible] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.marker > button {
+  padding: 0.45em 0.85em;
+  color: #d8d6d6;
+  font: 200 16px/1 Arial, Helvetica, sans-serif;
+  text-shadow: 0 0 4px #00000090;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.marker > button:hover {
+  color: #f40b57;
+}
+
+.marker > button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
