@@ -15,8 +15,8 @@ cfg.orbitCtrls.maxPolarAngle = 170;
 cfg.orbitCtrls.maxDistance = 8;
 cfg.orbitCtrls.minDistance = 0.1;
 
-// Load the Draco-compressed 3D scene
-cfg.model.file = 'scene/markers.glb';
+// Load the Draco-compressed 3D scene progressively from low to high quality
+cfg.model.file = ['scene/markers-low.glb', 'scene/markers-med.glb', 'scene/markers-high.glb'];
 cfg.model.compress.mesh = 'draco';
 
 // Load renderer-specific RectAreaLight LTC data
@@ -31,7 +31,7 @@ cfg.envCtrls.backgroundIntensity = 0;
 cfg.envCtrls.backgroundBlurriness = 1
 cfg.envCtrls.rotation.y = 100;
 
-// Distribute marker occlusion checks over 140 milliseconds
+// Distribute marker occlusion checks
 cfg.raycast.occlInterval = 140;
 cfg.raycast.occlMoveFactor = 0.01
 
@@ -41,5 +41,7 @@ cfg.post.ssr.enable = true;
 cfg.post.ssr.maxDistance = 15;
 cfg.post.ssr.thickness = 0.02;
 cfg.post.webgl.aa.fxaa.sharpness = 1;
+
+cfg.debug.log = 'all'
 
 export { cfg };

@@ -1,6 +1,6 @@
 import { Comp } from 'illutions';
 
-type MarkerClickEventType = 'M1_CLICK' | 'M2_CLICK' | 'M3_CLICK' | 'M4_CLICK';
+type MarkerClickEventType = 'M1_Click' | 'M2_Click' | 'M3_Click' | 'M4_Click';
 
 // Share semantic button behavior across all marker components
 export abstract class Marker extends Comp {

@@ -13,10 +13,10 @@ export function createStateMachine(app: App<typeof classes>): AnyStateMachine {
         | AnimEvent
         | CanvasPointerEvent
         | SceneReadyEvent
-        | { type: 'M1_CLICK' }
-        | { type: 'M2_CLICK' }
-        | { type: 'M3_CLICK' }
-        | { type: 'M4_CLICK' };
+        | { type: 'M1_Click' }
+        | { type: 'M2_Click' }
+        | { type: 'M3_Click' }
+        | { type: 'M4_Click' };
     },
     actions: {
       // Animate the camera between the overview and watch details
@@ -50,55 +50,55 @@ export function createStateMachine(app: App<typeof classes>): AnyStateMachine {
     },
   }).createMachine({
     id: 'App',
-    initial: 'Init',
+    initial: 'INIT',
     states: {
-      Init: {
+      INIT: {
         on: {
-          SCENE_READY: {
-            target: 'Orbit',
+          Scene_Ready: {
+            target: 'ORBIT',
             actions: ['setOccluders', 'followAims', 'trackOverlaps'],
           },
         },
       },
-      Orbit: {
+      ORBIT: {
         entry: ['enableOrbitCtrls'],
         exit: ['disableOrbitCtrls'],
         on: {
-          CANVAS_CLICK: { target: 'AnimM0' },
-          M1_CLICK: { target: 'AnimM1' },
-          M2_CLICK: { target: 'AnimM2' },
-          M3_CLICK: { target: 'AnimM3' },
-          M4_CLICK: { target: 'AnimM4' },
+          Canvas_Click: { target: 'ANIM_M0' },
+          M1_Click: { target: 'ANIM_M1' },
+          M2_Click: { target: 'ANIM_M2' },
+          M3_Click: { target: 'ANIM_M3' },
+          M4_Click: { target: 'ANIM_M4' },
         },
       },
-      AnimM0: {
+      ANIM_M0: {
         entry: ['animM0Cam'],
         on: {
-          ANIM_COMPLETE: { target: 'Orbit' },
+          Anim_Complete: { target: 'ORBIT' },
         },
       },
-      AnimM1: {
+      ANIM_M1: {
         entry: ['animM1Cam'],
         on: {
-          ANIM_COMPLETE: { target: 'Orbit' },
+          Anim_Complete: { target: 'ORBIT' },
         },
       },
-      AnimM2: {
+      ANIM_M2: {
         entry: ['animM2Cam'],
         on: {
-          ANIM_COMPLETE: { target: 'Orbit' },
+          Anim_Complete: { target: 'ORBIT' },
         },
       },
-      AnimM3: {
+      ANIM_M3: {
         entry: ['animM3Cam'],
         on: {
-          ANIM_COMPLETE: { target: 'Orbit' },
+          Anim_Complete: { target: 'ORBIT' },
         },
       },
-      AnimM4: {
+      ANIM_M4: {
         entry: ['animM4Cam'],
         on: {
-          ANIM_COMPLETE: { target: 'Orbit' },
+          Anim_Complete: { target: 'ORBIT' },
         },
       },
     },

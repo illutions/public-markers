@@ -3,9 +3,11 @@
 The following third-party assets remain subject to their original licenses.
 Their sources and applicable license terms are documented below.
 
-The combined scene export in `public/scene/markers.glb` was created and assembled
-for this example. It incorporates the third-party 3D model listed below. The
-embedded asset retains its original license.
+The progressive scene exports in `public/scene/markers-low.glb`,
+`public/scene/markers-med.glb`, and `public/scene/markers-high.glb` were created
+and assembled for this example.
+They incorporate the third-party 3D model listed below. The embedded asset retains
+its original license.
 
 ## Watch Atlantic
 
@@ -14,7 +16,8 @@ embedded asset retains its original license.
 - **License:** Creative Commons Attribution 4.0 International (CC BY 4.0)
 - **License URL:** https://creativecommons.org/licenses/by/4.0/
 - **Source:** https://sketchfab.com/3d-models/watch-atlantic-cae4c557c949470697a86975ef9fdbc6
-- **Bundled use:** Included in `public/scene/markers.glb`.
+- **Bundled use:** Included in the progressive `public/scene/markers-low.glb`,
+  `public/scene/markers-med.glb`, and `public/scene/markers-high.glb` variants.
 
 ## Lonely Road Afternoon (Pure Sky)
 

@@ -13,7 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "illutions": "^0.26.0",
+    "illutions": "^0.27.0",
     "three": "~0.185.1",
     "xstate": "~5.32.5"
   },
