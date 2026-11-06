@@ -1,9 +1,9 @@
-import { Comp } from 'illutions';
+import { Web } from 'illutions';
 
 type MarkerClickEventType = 'M1_Click' | 'M2_Click' | 'M3_Click' | 'M4_Click';
 
 // Share semantic button behavior across all marker components
-export abstract class Marker extends Comp {
+export abstract class Marker extends Web {
   protected abstract readonly clickEventName: MarkerClickEventType;
 
   private button: HTMLButtonElement | null = null;

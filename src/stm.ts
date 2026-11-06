@@ -1,11 +1,13 @@
 import { type AnyStateMachine, setup } from 'xstate';
-import type { AnimEvent, App, CanvasPointerEvent, SceneReadyEvent } from 'illutions';
 
-import { classes } from './classes';
+import type { AnimEvent, CanvasPointerEvent, SceneReadyEvent } from 'illutions';
+
+import type { MyApp } from './index';
+
 
 // Define marker interaction, camera animation, and orbit control behavior with a state machine
-export function createStateMachine(app: App<typeof classes>): AnyStateMachine {
-  const { comps, engine, objs3D, orbitCtrls, raycast } = app;
+export const stm = (app: MyApp): AnyStateMachine => {
+  const { comps, orbitCtrls, scene } = app;
 
   return setup({
     types: {} as {
@@ -20,33 +22,32 @@ export function createStateMachine(app: App<typeof classes>): AnyStateMachine {
     },
     actions: {
       // Animate the camera between the overview and watch details
-      animM0Cam: () => engine.animCamCurveTo({ camTarget: 'M0Cam', aimTarget: 'M0Aim', radiusOut: 0.5 }),
-      animM1Cam: () => engine.animCamCurveTo({ camTarget: objs3D.M1Cam, aimTarget: objs3D.M1Aim, radiusOut: 0.5 }),
-      animM2Cam: () => engine.animCamCurveTo({ camTarget: objs3D.M2Cam, aimTarget: objs3D.M2Aim, radiusOut: 0.5 }),
-      animM3Cam: () => engine.animCamCurveTo({ camTarget: objs3D.M3Cam, aimTarget: objs3D.M3Aim, radiusOut: 0.5 }),
-      animM4Cam: () => engine.animCamCurveTo({ camTarget: objs3D.M4Cam, aimTarget: objs3D.M4Aim, radiusOut: 1 }),
+      animM0Cam: () => scene.animCamCurveTo({ camTarget: 'M0Cam', aimTarget: 'M0Aim', radiusOut: 0.5 }),
+      animM1Cam: () => scene.animCamCurveTo({ camTarget: comps.scene.m1Cam, aimTarget: comps.scene.m1Aim, radiusOut: 0.5 }),
+      animM2Cam: () => scene.animCamCurveTo({ camTarget: comps.scene.m2Cam, aimTarget: comps.scene.m2Aim, radiusOut: 0.5 }),
+      animM3Cam: () => scene.animCamCurveTo({ camTarget: comps.scene.m3Cam, aimTarget: comps.scene.m3Aim, radiusOut: 0.5 }),
+      animM4Cam: () => scene.animCamCurveTo({ camTarget: comps.scene.m4Cam, aimTarget: comps.scene.m4Aim, radiusOut: 1 }),
+      
       // Keep each HTML marker aligned with its 3D aim
       followAims: () => {
-        comps.M1[0].follow({ obj: objs3D.M1Aim });
-        comps.M2[0].follow({ obj: objs3D.M2Aim });
-        comps.M3[0].follow({ obj: objs3D.M3Aim });
-        comps.M4[0].follow({ obj: objs3D.M4Aim });
+        comps.web.m1[0].follow({ obj: comps.scene.m1Aim });
+        comps.web.m2[0].follow({ obj: comps.scene.m2Aim });
+        comps.web.m3[0].follow({ obj: comps.scene.m3Aim });
+        comps.web.m4[0].follow({ obj: comps.scene.m4Aim });
       },
+      
       // Keep visible markers from overlapping
-      trackOverlaps: () => {
-        comps.M1[0].trackOverlap();
-        comps.M2[0].trackOverlap();
-        comps.M3[0].trackOverlap();
-        comps.M4[0].trackOverlap();
+      trackWebOverlaps: () => {
+        comps.web.m1[0].trackOverlap();
+        comps.web.m2[0].trackOverlap();
+        comps.web.m3[0].trackOverlap();
+        comps.web.m4[0].trackOverlap();
       },
+      
       // Suspend orbit controls during camera transitions
       disableOrbitCtrls: () => orbitCtrls.disable(),
       enableOrbitCtrls: () => orbitCtrls.enable(),
-      // Use the hidden low-poly watch as the marker occlusion mesh
-      setOccluders: () => {
-        objs3D.WatchLP.obj.visible = false;
-        raycast.setOccluders({ objs3D: [objs3D.WatchLP] });
-      },
+      
     },
   }).createMachine({
     id: 'App',
@@ -56,7 +57,7 @@ export function createStateMachine(app: App<typeof classes>): AnyStateMachine {
         on: {
           Scene_Ready: {
             target: 'ORBIT',
-            actions: ['setOccluders', 'followAims', 'trackOverlaps'],
+            actions: ['followAims', 'trackWebOverlaps'],
           },
         },
       },
@@ -103,4 +104,4 @@ export function createStateMachine(app: App<typeof classes>): AnyStateMachine {
       },
     },
   });
-}
+};

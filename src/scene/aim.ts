@@ -5,11 +5,11 @@ import { Ring } from './ring';
 
 export class Aim extends Obj3D {
   // Called once when this object is encountered while traversing the GLTF model
-  public override onTraverse(objGltf: Object3D): void {
-    super.onTraverse(objGltf);
+  public override onCreate(obj: Object3D): void {
+    super.onCreate(obj);
 
     // Add a visual ring sprite at the marker aim
-    const ring = new Ring(objGltf);
-    this.scene.add(ring);
+    const ring = new Ring(obj);
+    this.scene.obj.add(ring);
   }
 }

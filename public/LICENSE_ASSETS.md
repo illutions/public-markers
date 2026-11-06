@@ -26,4 +26,4 @@ its original license.
 - **License:** Creative Commons CC0 1.0 Universal
 - **License URL:** https://creativecommons.org/publicdomain/zero/1.0/
 - **Source:** https://polyhaven.com/a/lonely_road_afternoon_puresky
-- **Bundled file:** `public/scene/lonely_road_afternoon_puresky_1k.exr`
+- **Bundled file:** `public/scene/lonely_road_afternoon_puresky_256.exr`
