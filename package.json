@@ -10,10 +10,11 @@
   "scripts": {
     "dev": "node build.js dev",
     "build": "node build.js",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tsc": "npx tsc --noEmit"
   },
   "dependencies": {
-    "illutions": "^0.38.0",
+    "illutions": "^0.39.1",
     "three": "~0.187.0",
     "xstate": "~5.33.2"
   },
